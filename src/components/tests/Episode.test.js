@@ -3,9 +3,49 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import Episode from './../Episode';
 
+const testData = {
+    id : 1,
+    image : 'img',
+    name: "episode",
+    season: 1,
+    number : 1,
+    summary : 'this is an episode',
+    runtime : 1
+}
+const ImgtestData = {
+    id : 1,
+    image : null,
+    name: "episode",
+    season: 1,
+    number : 1,
+    summary : 'this is an episode',
+    runtime : 1
+}
+test("renders without error", () => {
+    render(<Episode episode={testData}/> )
+});
 
-test("renders without error", () => {});
+test("renders the summary test passed as prop", ()=>{
+    //Arrange:render the component to the screen and pass summary as prop
+    render(<Episode episode={testData}/>);
 
-test("renders the summary test passed as prop", ()=>{});
+    //Act:query to get summary paragraph text
+    const summary = screen.queryByText(/this is an episode/i);
 
-test("renders default image when image is not defined", ()=>{});
+    //Assert:expect specific summary text to be in the documents
+    expect(summary).toBeInTheDocument();
+    expect(summary).toHaveTextContent(/this is an episode/i);
+    expect(summary).toBeTruthy();
+});
+
+test("renders default image when image is not defined", () =>{
+    //Arrange:render the component with the image prop
+    render(<Episode episode={ImgtestData}/>);
+
+    //Act: query to get image element
+    // const image = screen.queryByAltText('./stranger-things.png');
+    // console.log("Image is",image)
+    // // // //Assert: expect the image value to display a default value
+    // // expect(image).toHaveProperty('alt','./stranger-things.png')
+    // expect(image).toBeInTheDocument()
+});
