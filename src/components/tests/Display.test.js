@@ -7,7 +7,7 @@ import Display from './../Display';
 
 
 test('renders without errors with no props', ()=>{
-
+    render(<Display/>)
 });
 
 test('renders Show component when the button is clicked ', ()=>{});
