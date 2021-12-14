@@ -14,7 +14,7 @@ const testData = {
 }
 const ImgtestData = {
     id : 1,
-    image : null,
+    image : '',
     name: "episode",
     season: 1,
     number : 1,
@@ -43,9 +43,8 @@ test("renders default image when image is not defined", () =>{
     render(<Episode episode={ImgtestData}/>);
 
     //Act: query to get image element
-    // const image = screen.queryByAltText('./stranger-things.png');
-    // console.log("Image is",image)
-    // // // //Assert: expect the image value to display a default value
-    // // expect(image).toHaveProperty('alt','./stranger-things.png')
-    // expect(image).toBeInTheDocument()
+    const image = screen.queryByAltText('https://i.ibb.co/2FsfXqM/stranger-things.png');
+    
+    //Assert: expect the image value to display a default value
+    expect(image).toBeInTheDocument()
 });
